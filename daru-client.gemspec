@@ -1,17 +1,17 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "daru/client/version"
+require "daru/apiclient/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "daru-client"
-  spec.version       = Daru::Client::VERSION
+  spec.name          = "daru-apiclient"
+  spec.version       = Daru::APIClient::VERSION
   spec.authors       = ["kojix2"]
   spec.email         = ["2xijok@gmail.com"]
 
-  spec.summary       = "daru-client"
+  spec.summary       = "HTTParty => JSON => Daru::DataFrame"
   spec.description   = "Get JSON data from RestAPI with httparty and create Daru::DataFrame."
-  spec.homepage      = "https://github.com/kojix2/daru-client"
+  spec.homepage      = "https://github.com/kojix2/daru-apiclient"
   spec.license       = "MIT"
 
   # Specify which files should be added to the gem when it is released.

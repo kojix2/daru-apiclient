@@ -1,5 +1,5 @@
 require "bundler/setup"
-require "daru/client"
+require "daru/apiclient"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
