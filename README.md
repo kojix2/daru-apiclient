@@ -18,6 +18,10 @@ gem install daru-apiclient
 * Jupyter notebook with IRuby (reccomended)
 
 ## Examples
+![alt text](https://raw.githubusercontent.com/kojix2/daru-apiclient/master/notebook/daru-apiclient.png)
+```bash
+juypter notebook
+```
 
 ```ruby
 require 'daru/apiclient'
@@ -52,7 +56,6 @@ chart = Daru::View::Plot.new(df,
   )
 chart.show_in_iruby
 ```
-![alt text]()
 
 ## Development
 * This gem will keeps its simplicity.
