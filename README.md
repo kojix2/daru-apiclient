@@ -1,38 +1,65 @@
 # Daru::APIClient
 
-Welcome to your new gem! In this directory, you'll find the files you need to be able to package up your Ruby library into a gem. Put your Ruby code in the file `lib/daru/apiclient`. To experiment with that code, run `bin/console` for an interactive prompt.
+## REST API => JSON => Daru::DataFrame
 
-TODO: Delete this and the text above, and describe your gem
+Get JSON data from Rest API with [httparty](https://github.com/jnunemaker/httparty) and create Daru::DataFrame. 
 
 ## Installation
 
-Add this line to your application's Gemfile:
-
-```ruby
-gem 'daru-apiclient'
+```bash
+gem install daru-apiclient
 ```
 
-And then execute:
+## Requirements
 
-    $ bundle
+* Ruby
+* Daru
+* httparty
+* Jupyter notebook with IRuby (reccomended)
 
-Or install it yourself as:
+## Examples
 
-    $ gem install daru-apiclient
+```ruby
+require 'daru/apiclient'
+require 'daru/view'
+Daru::View.plotting_library = :googlecharts
 
-## Usage
+C = Daru::APIClient.new "http://bestgems.org/api/v1/gems"
 
-TODO: Write usage instructions here
+def bestgems(gem)
+  df = C.get("/#{gem}/daily_downloads.json")
+  df.rename_vectors "daily_downloads" => gem
+  df
+end
+
+rack = bestgems "rack"
+rake = bestgems "rake"
+json = bestgems "json"
+thor = bestgems "thor"
+
+df = rack.join(rake, how: :inner, on: ["date"])
+         .join(json, how: :inner, on: ["date"])
+         .join(thor, how: :inner, on: ["date"])
+
+df.order = ["date", "rack", "rake", "json", "thor"]
+df.sort!(["date"])
+df = df.row[-300..-20]
+
+chart = Daru::View::Plot.new(df,
+  type: :area,
+  isStacked: true,
+  height: 400
+  )
+chart.show_in_iruby
+```
+![alt text]()
 
 ## Development
-
-After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
-
-To install this gem onto your local machine, run `bundle exec rake install`. To release a new version, update the version number in `version.rb`, and then run `bundle exec rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+* This gem will keeps its simplicity.
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/[USERNAME]/daru-apiclient.
+Bug reports and pull requests are welcome on GitHub at https://github.com/kojix2/daru-apiclient.
 
 ## License
 
