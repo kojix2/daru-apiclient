@@ -1,23 +1,23 @@
-# Daru::APIClient
+# 🔶 Daru::APIClient
 
-## REST API => JSON => Daru::DataFrame
-
+## 🔸Overview
+REST API => JSON => Daru::DataFrame
 Get JSON data from Rest API with [httparty](https://github.com/jnunemaker/httparty) and create Daru::DataFrame. 
 
-## Installation
+## 🔸Installation
 
 ```bash
 gem install daru-apiclient
 ```
 
-## Requirements
+## 🔸Requirements
 
 * Ruby
 * Daru
 * httparty
 * Jupyter notebook with IRuby (reccomended)
 
-## Examples
+## 🔸Examples
 ![alt text](https://raw.githubusercontent.com/kojix2/daru-apiclient/master/notebook/daru-apiclient.png)
 ```bash
 juypter notebook
@@ -57,13 +57,13 @@ chart = Daru::View::Plot.new(df,
 chart.show_in_iruby
 ```
 
-## Development
+## 🔸Development
 * This gem will keeps its simplicity.
 
-## Contributing
+## 🔸Contributing
 
 Bug reports and pull requests are welcome on GitHub at https://github.com/kojix2/daru-apiclient.
 
-## License
+## 🔸License
 
 The gem is available as open source under the terms of the [MIT License](https://opensource.org/licenses/MIT).
