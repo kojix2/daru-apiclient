@@ -3,6 +3,7 @@ require 'daru'
 require "daru/apiclient/version"
 
 module Daru
+  
   class APIClientTemplate
     include HTTParty
     
@@ -17,6 +18,7 @@ module Daru
                                             end #APIClientTemplate
   
   class APIClient
+    
     def initialize(uri)
       client_class = Class.new(Daru::APIClientTemplate)
       client_class.base_uri uri
@@ -27,6 +29,15 @@ module Daru
     
     def post(*args)
       @c.post(*args) end
+    
+    def hget(*args)
+      @c.class.get(*args).to_h end
+    
+    def hpost
+      @c.class.post(*args).to_h end
+    
+    def c
+      @c end
 
                                                     end #APICLIENT
 end
