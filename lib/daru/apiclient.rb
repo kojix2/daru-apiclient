@@ -37,7 +37,7 @@ module Daru
       @c.class.post(*args).to_h end
     
     def c
-      @c end
+      @c.class end
 
                                                     end #APICLIENT
 end
