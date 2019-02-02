@@ -19,7 +19,7 @@ module Daru
   class APIClient
     def initialize(uri)
       client_class = Class.new(Daru::APIClientTemplate)
-      client_class.base_uri = uri
+      client_class.base_uri uri
       @c = client_class.new end
     
     def get(*args)
