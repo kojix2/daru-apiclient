@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    daru-apiclient (0.0.1)
+    daru-apiclient (0.0.2)
       daru
       httparty
 
