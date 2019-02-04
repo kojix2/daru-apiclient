@@ -1,5 +1,6 @@
 # 🔶 Daru::APIClient 🔶
 
+[![Gem Version](https://badge.fury.io/rb/daru-apiclient.svg)](https://badge.fury.io/rb/daru-apiclient)
 
 ## 🔸Overview🔸
 Get JSON data from Rest API with [httparty](https://github.com/jnunemaker/httparty) and create Daru::DataFrame. 
