@@ -7,13 +7,29 @@ module Daru
     include HTTParty
 
     def get(*args)
-      response = self.class.get(*args)
-      Daru::DataFrame.new(response.to_a)
-  end
+      res = self.class.get(*args)
+      create_dataframe res
+    end
 
     def post(*args)
-      response = self.class.post(*args)
-      Daru::DataFrame.new(response.to_a)
+      res = self.class.post(*args)
+      create_dataframe res
+    end
+
+    def create_dataframe(res)
+      peel(res.to_a)
+      Daru::DataFrame.new(res.to_a)
+    end
+
+    private
+
+    def peel(arg)
+      case arg
+      when Array
+        arg.size == 1 ? peel(arg[0]) : arg
+      when Hash
+        arg.keys.size == 1 ? peel(arg[arg.keys.first]) : arg
+      end
     end
   end
 
