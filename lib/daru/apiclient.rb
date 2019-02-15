@@ -17,8 +17,8 @@ module Daru
     end
 
     def create_dataframe(res)
-      peel(res.to_a)
-      Daru::DataFrame.new(res.to_a)
+      res = peel(res.to_a)
+      Daru::DataFrame.new(res)
     end
 
     private
@@ -26,9 +26,23 @@ module Daru
     def peel(arg)
       case arg
       when Array
-        arg.size == 1 ? peel(arg[0]) : arg
+        if arg.size == 1
+          peel(arg[0])
+        elsif arg.size == 2
+          if arg[0].is_a?(String) && arg[1].is_a?(Hash)
+            peel(arg[1])
+          else
+            arg
+          end
+        else
+          arg
+        end
       when Hash
-        arg.keys.size == 1 ? peel(arg[arg.keys.first]) : arg
+        if arg.keys.size == 1
+          peel(arg[arg.keys.first])
+        else
+          [arg]
+        end
       end
     end
   end
